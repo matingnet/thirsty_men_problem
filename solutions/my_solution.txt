@@ -1,0 +1,87 @@
+
+
+Steps for Solving the Thirsty Men Problem:
+
+1. Shuffling the Cups:
+   - The guests will rearrange their cups such that no one holds their own cup.
+   - To achieve this, they can stand in a circle and pass their cup to the person on their right. 
+   - This ensures that each guest ends up holding a cup that doesn't belong to them.
+
+2. Secure Placement Using Encryption:
+   - Each guest, say Guest X, will create a secret key that is known only to them and the pourer. 
+   - Guest X will then:
+     - Ask the owner of the cup they are holding to choose a large random number.
+     - Encrypt this number using their secret key.
+     - Perform a modulus operation (`mod N`) on the encrypted result to ensure the number falls within the range of available positions (0 to N-1).
+     - Place the cup they are holding in the position corresponding to the result of the modulus operation.
+
+3. Validation by the Pourer:
+   - The pourer, who knows Guest X's secret key, can independently verify that the calculation was done correctly.
+   - This ensures that Guest X didn’t intentionally place the cup in an incorrect position.
+
+4. Repeat for All Guests:
+   - This process is repeated for every guest until all cups are placed in the positions determined by the secure computation.
+
+--------------------------
+
+The following question may arise:  
+Why is it necessary to shuffle the cups in the first place?  
+
+Answer:  
+Shuffling the cups ensures fairness and enforces cooperation. Here's why:  
+
+1. Incentive to Follow the Rules:  
+   - When the cups are shuffled, no guest holds their own cup.  
+   - If a guest disobeys the rules, the guest holding their cup will retaliate by refusing to place it on the table.  
+   - As a result, the disobedient guest will have no chance to drink, creating a strong incentive for everyone to follow the rules.  
+
+2. Fair Distribution of Responsibilities:
+   - Without shuffling, some players (e.g., those assigned the middle positions) might refuse to place their own cups because they perceive it as a disadvantage.  
+   - In the shuffled setup, it is not the cup owner but the person holding the cup who is responsible for placing it, ensuring a fair distribution of responsibilities.
+
+--------------------------
+
+Simulation of the process with three players  
+
+Players and Initial Setup:  
+1. Players:  
+   - Player A, Player B, Player C.  
+
+2. Cups:  
+   - Each player initially holds their own cup:  
+     - Player A holds Cup A.  
+     - Player B holds Cup B.  
+     - Player C holds Cup C.  
+
+3. Shuffling:  
+   The cups are shuffled so no player holds their own cup:  
+   - Player A holds Cup B.  
+   - Player B holds Cup C.  
+   - Player C holds Cup A.  
+
+Simulation Steps:  
+
+Step 1: Player A’s Turn  
+- Player A creates a secret key.  
+- Player A asks the owner of Cup B (Player B) to choose a random number (e.g., 15).  
+- Player A encrypts the number and calculates the position by performing modulus 3 on the result.  
+- Result: Player A places Cup B in Position 2.  
+
+Step 2: Player B’s Turn  
+- Player B creates a secret key.  
+- Player B asks the owner of Cup C (Player C) to choose a random number (e.g., 9).  
+- Player B encrypts the number and calculates the position by performing modulus 3 on the result.  
+- Result: Player B places Cup C in Position 0.  
+
+Step 3: Player C’s Turn  
+- At this point, only Position 1 is left.  
+- Player C places Cup A directly in the remaining position (Position 1).  
+
+Final Outcome:  
+The cups are placed as follows:  
+- Position 0: Cup C  
+- Position 1: Cup A  
+- Position 2: Cup B  
+
+This ensures fairness and adherence to the rules. Each player cooperates because no one holds their own cup, and disobedience results in not being able to drink.
+
